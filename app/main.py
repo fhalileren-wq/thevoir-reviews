@@ -3,6 +3,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.requests import Request
 from sqlalchemy.orm import Session
+from fastapi.middleware.cors import CORSMiddleware
 
 from .db import Base, engine, get_db
 from .models import Review, ReviewReply, AdminUser
@@ -10,6 +11,18 @@ from .schemas import ReviewCreate, ReviewOut, ReplyCreate
 from .auth import hash_password, verify_password
 
 app = FastAPI(title="THEVOIR Reviews API")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://thevoirwear.com",
+        "https://www.thevoirwear.com",
+        "http://localhost:10000",
+        "http://127.0.0.1:10000"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],)
+    
 templates = Jinja2Templates(directory="app/templates")
 
 Base.metadata.create_all(bind=engine)
