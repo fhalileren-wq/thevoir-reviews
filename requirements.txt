@@ -6,5 +6,3 @@ python-multipart
 jinja2
 passlib[bcrypt]
 python-jose[cryptography]
-
-DATABASE_URL=postgresql://thevoir_user:YENI_SIFRE@dpg-d794ei2a214c73akjl80-a.frankfurt-postgres.render.com/thevoir_reviews
